@@ -1,0 +1,61 @@
+﻿@model Topics
+
+@{
+    ViewBag.Title = "Show details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="border: 1px #0094ff solid; color:white; font-size:16px;" class="rounded-lg" >
+    <div class="jumbotron p-4 bg-info rounded-0 navbar-dark px-4 mb-0">
+        <strong class="text-right">
+            <i class="fas fa-book-open"></i>
+                @Model.Subject
+        </strong>
+        <span class="pull-right">
+            <i class="fas fa-eye"></i>
+            @Model.TotalViews
+        </span>
+    </div>
+    <div class="row p-5 mt-0" style="color:black;">
+        <div class="col-2">
+            <div class="border rounded-lg text-center p-4">
+                <i class="fas fa-user-tie mb-3" style="font-size:100px;"></i>
+                <br />
+                <span class="border-0 rounded-lg p-1 bg-light">@Model.Auther.Username</span>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="border rounded-lg p-3" style="min-height:150px;">
+                @Model.Body
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="border: 1px solid #00b514; color:white;" class="mt-4 rounded-lg">
+    <div class="jumbotron bg-success p-3 px-4 rounded-0 navbar-dark" style="font-size:14px;">
+        <i class="fas fa-comment"></i>  <strong>Comments</strong>
+    </div>
+    @foreach (var comment in ViewBag.comments as IEnumerable<Comments>)
+    {
+        <div class="row px-5 mt-0 mb-5" style="color:black;">
+            <div class="col-2" style="color:white;">
+                <div class=" border rounded-lg text-center p-4 bg-dark">
+                    <i style="font-size:40px; width:75px;" 
+                       class="fas fa-user-tie mb-3 p-2 img-thumbnail bg-success"></i>
+                    <br />
+                    <span>@comment.Users.Username</span>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class=" border border-dark rounded-lg p-4" style="min-height:200px;">
+                    @comment.Body
+                    <br />
+                    <u class="text-right">@comment.CreatedAt</u>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
