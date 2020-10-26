@@ -19,9 +19,9 @@ namespace GolabalForum.Controllers
             var data = db.Categories
                          .OrderBy(x => x.Id)
                          .Include(path: x => x.Topics);
-
             var pageNum = page ?? 1;
-            var pageSize = 5;
+            int pageSize = 5;
+
 
             return View(data.ToPagedList(pageNum, pageSize));
         }

@@ -42,6 +42,7 @@ namespace GolabalForum.Controllers
             return View(data.ToPagedList(pageNum, pageSize));
         }
 
+        // ======================================================================================== //
         // Method to Show Details Topic
         [Route("~/Topic-{topicId}")]
         public ActionResult Show(int topicId, int? page)

@@ -6,10 +6,11 @@
     <title>@ViewBag.Title - Global Forum</title>
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap333.min.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/myStyle.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="navbar navbar-dark navbar-expand-md bg-dark d-flex">
+<body class="bg-light">
+    <div class="navbar navbar-dark navbar-expand-md bg-dark d-flex mb-4">
         <div class="container">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="navbar-toggler-icon"></span>
@@ -20,6 +21,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Categories")">Categories</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto text-white">
+                    @if (Session["UserName"] != null)
+                    {
+                        Html.RenderPartial("_LogInView");
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("LogIn", "Account")">logIn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Registeration", "Account")">Registration</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -38,7 +57,7 @@
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/all.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap333.min.js"></script>
+    <script src="~/Scripts/sweetalert2@9.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

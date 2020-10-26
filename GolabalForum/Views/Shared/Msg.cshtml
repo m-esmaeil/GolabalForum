@@ -1,0 +1,10 @@
+﻿@if (TempData.ContainsKey("msg"))
+{
+    <div class="alert alert-success my-2">
+        <i class="fas fa-info-circle"></i>
+        @TempData["msg"]
+        <button type="button" data-dismiss="alert" aria-label="close" class="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}

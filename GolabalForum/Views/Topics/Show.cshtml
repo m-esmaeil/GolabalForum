@@ -5,18 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="border: 1px #0094ff solid; color:white; font-size:16px;" class="rounded-lg" >
-    <div class="jumbotron p-4 bg-info rounded-0 navbar-dark px-4 mb-0">
-        <strong class="text-right">
+<div style="border: 0px; color:white; font-size:16px;" class="rounded-lg shadow" >
+    <div class="jumbotron p-3 bg-info navbar-dark px-4 mb-0 d-flex" 
+         style="border-top-left-radius: 10px;border-top-right-radius: 10px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+        <strong class="">
             <i class="fas fa-book-open"></i>
                 @Model.Subject
         </strong>
-        <span class="pull-right">
+        <span class="ml-auto">
             <i class="fas fa-eye"></i>
             @Model.TotalViews
         </span>
     </div>
-    <div class="row p-5 mt-0" style="color:black;">
+    <div class="row p-4 mt-0" style="color:black;">
         <div class="col-2">
             <div class="border rounded-lg text-center p-4">
                 <i class="fas fa-user-tie mb-3" style="font-size:100px;"></i>
@@ -32,8 +33,9 @@
     </div>
 </div>
 
-<div style="border: 1px solid #00b514; color:white;" class="mt-4 rounded-lg">
-    <div class="jumbotron bg-success p-3 px-4 rounded-0 navbar-dark" style="font-size:14px;">
+<div style="border: 0px; color:white;" class="mt-4 rounded-lg shadow pb-3">
+    <div class="jumbotron bg-success p-2 px-4 navbar-dark" 
+         style="font-size: 14px;border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;">
         <i class="fas fa-comment"></i>  <strong>Comments</strong>
     </div>
     @foreach (var comment in ViewBag.comments as IEnumerable<Comments>)

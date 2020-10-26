@@ -1,0 +1,78 @@
+﻿@model IPagedList<Categories>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="border-0 shadow pb-3" style="border-radius:10px;">
+    <h3 class="jumbotron p-4 bg-info m-0 px-5"
+        style="border-radius:10px; border-bottom-right-radius:0px; border-bottom-left-radius:0px; color:white;">
+        <i class="fas fa-book-reader"></i>  Categories
+    </h3>
+
+    @Html.Partial("Msg")
+
+    <div class="mt-4 px-5 pb-2 d-flex">
+        <a href="@Url.Action("Create", "Categories")"
+           class="btn btn-sm btn-secondary" style="color:white;">
+            <i class="fas fa-plus-circle"></i> New Category
+        </a>
+
+        <form action="@Url.Action("Index")" method="post" class=" w-25 ml-auto">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" name="search" value="@ViewBag.Search" 
+                       onchange="mySearch()"/>
+                <div class="input-group-append" style="margin-left:0px;">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="px-5 pt-1">
+        <table class="table table-hover table-striped table-sm">
+            <thead class="bg-success">
+                <tr class="text-center">
+                    <th class="text-center">Serial</th>
+                    <th>Categories name</th>
+                    <th class="text-center">Topics</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int num = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.Raw(num++)</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Topics", new { categoryId = item.Id})">
+                                <i class="fab fa-google-drive"></i> @item.Name
+                            </a>
+                        </td>
+                        <td class="text-center">@item.Topics.Count()</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Categories", new { id= item.Id})"
+                               class="btn btn-sm btn-outline-success"><i class="fas fa-pencil-alt"></i>  Edit</a>
+                            <a href="@Url.Action("Details", "Categories", new { id= item.Id})"
+                               class="btn btn-sm btn-outline-info"><i class="fas fa-info"></i>  Details</a>
+                            <form method="post" action="@Url.Action("Delete", new { id= item.Id})" class="d-inline-block">
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-sm btn-outline-danger del_btn" 
+                                        onclick="return confirm('are you sure you want to delete category : @item.Name')">
+                                    <i class="fas fa-trash"></i>  Delete
+                                </button>
+                            </form>
+                         </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        @Html.PagedListPager(Model, (Page) => Url.Action("Index", new { Page }))
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model Categories
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="border-0 rounded-lg shadow pt-0 w-50 m-auto">
+    <h4 class="jumbotron p-4 shadow bg-info glyphicon  mt-0" style="color:white; border-bottom:0px;">
+        <i class="fas fa-pen"></i>  Create Categories
+    </h4>
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group container pb-5">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group d-flex flex-column">
+                <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary mt-2 ml-auto"><u>Back to List</u></a>
+            </div>
+        </div>
+    }
+</div>

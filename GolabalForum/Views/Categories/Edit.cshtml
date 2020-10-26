@@ -1,0 +1,30 @@
+﻿@model Categories
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert text-danger">
+    @Html.ValidationSummary()
+</div>
+<div class="border-0 shadow pb-3 pt-0 w-50 mx-auto">
+    <h4 class="jumbotron p-3 text-white mt-0 mb-2 bg-info"><i class="fas fa-user-edit"></i> Edit Category</h4>
+    <form action="@Url.Action("Edit", new { Id = Model.Id})" method="post">
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-group container">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group d-flex flex-column">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary ml-auto"><u>Back To List</u></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
