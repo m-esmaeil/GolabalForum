@@ -319,8 +319,9 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Account\Registeration.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Shared\_LogInView.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Shared\_AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,5 +64,19 @@ namespace GolabalForum.Controllers
 
             return View(topic);
         }
+
+        // ========================================================================================== //
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddComment(Comments addcomment, string comment, int usrId, int topicId)
+        {
+            _db.Comments.Add(addcomment).Body = comment;
+            _db.Comments.Add(addcomment).CreatedBy = usrId;
+            _db.Comments.Add(addcomment).TopicId = topicId;
+            _db.Comments.Add(addcomment).CreatedAt = DateTime.Now;
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

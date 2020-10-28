@@ -49,26 +49,38 @@ namespace GolabalForum.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogIn(Users usrs)
         {
-            if (ModelState.IsValid)
-            {
-                var obj = db.Users.Where(x => x.Password == usrs.Password && x.Username == usrs.Username).FirstOrDefault();
+                var obj = db.Users.Where(x => x.Password.Equals(usrs.Password) &&
+                                              x.Username.Equals(usrs.Username))
+                                  .FirstOrDefault();
                 if (obj != null)
                 {
-                    Session["Password"] = usrs.Password.ToString();
-                    Session["UserName"] = usrs.Username.ToString();
+                    Session["usrId"] = usrs.Id;
+                    Session["LogPassword"] = usrs.Password.ToString();
+                    Session["LogUserName"] = usrs.Username.ToString();
 
                     return RedirectToAction ("LoggedIn");
                 }
-            }
+                    
             return View(usrs);
         }
 
         
-        public ActionResult LoggedIn()
+        public ActionResult LoggedIn(Users usr)
         {
-            if (Session["UserName"] != null)
+            if (Session["LogUserName"] != null && Session["LogPassword"] != null)
             {
-                return PartialView("_LogInView");
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("LogIn");
+        }
+
+        public ActionResult LogOut()
+        {
+            if (Session["LogUserName"] != null && Session["LogPassword"] != null)
+            {
+                Session["LogUserName"] = null;
+                Session["LogPassword"] = null;
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("LogIn");
         }

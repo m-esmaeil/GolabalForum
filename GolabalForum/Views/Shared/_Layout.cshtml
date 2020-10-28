@@ -26,9 +26,9 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto text-white">
-                    @if (Session["UserName"] != null)
+                    @if (Session["LogUserName"] != null && Session["LogPassword"] != null)
                     {
-                        Html.RenderPartial("_LogInView");
+                        @Html.Partial("_LogInView")
                     }
                     else
                     {

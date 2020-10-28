@@ -1,4 +1,18 @@
 ﻿
-    <li class="nav-item"><a class="nav-link" href="#">Welcome : @Session["UserName"].ToString()</a></li>
+<li class="nav-item dropdown">
+    <a class="nav-link" href="@Url.Action("Index", "Account")" data-toggle="dropdown">
+    Welcome : @Session["LogUserName"]
+    </a>
+    <div class="dropdown-menu rounded-lg shadow border-0 text-center">
+        <a href="@Url.Action("LogOut", "Account")" class="dropdown-item">LogOut</a>
+        <div class="dropdown-divider"></div>
+        <a href="@Url.Action("", "")" class="dropdown-item">item 2</a>
+    </div>
+
+</li>
+
+
+
+
 
 

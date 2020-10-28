@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Comments>
+
+@if (Session["LogUserName"] != null)
+{
+    <div class="row px-5">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <form action="@Url.Action("AddComment", "Topics", new {usrId = Session["usrId"], topicId = ViewBag.comments.TopicId })" 
+                  method="post" class="d-flex flex-column">
+                <textarea name="comment" class="w-100 border rounded-lg border-dark"></textarea>
+                <button type="submit" class="btn btn-outline-secondary ml-auto mt-3">Add Comment</button>
+            </form>
+        </div>
+        
+    </div>
+   
+}
